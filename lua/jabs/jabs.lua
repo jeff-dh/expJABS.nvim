@@ -114,9 +114,8 @@ local function updateBufferFromLsLines(buf)
         local line = preLine .. filename_str .. postLine
 
         -- add line to buffer
-        local new_line = api.nvim_buf_line_count(0)
-        local line_number = config.disable_title and i - 1 or i
-        api.nvim_buf_set_lines(buf, line_number, -1, true, { line })
+        local new_line = config.disable_title and i - 1 or i
+        api.nvim_buf_set_lines(buf, new_line, -1, true, { line })
         --apply some highlighting
         api.nvim_buf_add_highlight(buf, -1, buf_symbol_hl, new_line, 0, -1)
 
