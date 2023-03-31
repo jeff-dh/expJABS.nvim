@@ -76,7 +76,6 @@ local function setup(c)
         current = c.symbols.current or "",
         split = c.symbols.split or "",
         alternate = c.symbols.alternate or "",
-        hidden = c.symbols.hidden or "﬘",
         locked = c.symbols.locked or "",
         ro = c.symbols.ro or "",
         edited = c.symbols.edited or "",

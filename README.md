@@ -126,7 +126,6 @@ require 'jabs'.setup {
         current = "C", -- default 
         split = "S", -- default 
         alternate = "A", -- default 
-        hidden = "H", -- default ﬘
         locked = "L", -- default 
         ro = "R", -- default 
         edited = "E", -- default 
