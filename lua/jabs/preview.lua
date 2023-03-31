@@ -48,7 +48,6 @@ local function open(previewCfg)
     local prev_win = api.nvim_open_win(buf, false, getPreviewConfig(previewCfg))
 
     api.nvim_win_set_var(prev_win, "isJABSWindow", true)
-    api.nvim_win_set_option(prev_win, "relativenumber", false)
     api.nvim_set_current_win(prev_win)
 
     -- close preview when cursor leaves window
