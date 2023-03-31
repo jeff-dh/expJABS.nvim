@@ -122,6 +122,10 @@ local function updateBufferFromLsLines(buf)
         -- highligh filename
         if config.highlight.filename ~= nil then
             local fn = string.match(filename, '/([^/]*)$')
+            if fn == nil then
+                fn = string.gsub(filename, "%[", "%%[")
+                fn = string.gsub(fn, "%]", "%%]")
+            end
             local fn_start, fn_end
             if not config.split_filename then
                 fn_start, fn_end = string.match(line, '/()' .. fn .. '()[^%/]*$')
@@ -134,7 +138,7 @@ local function updateBufferFromLsLines(buf)
             -- find the filename -> fn_start is nil in that case
             if fn_start ~= nil then
                 api.nvim_buf_add_highlight(buf, -1, config.highlight.filename,
-                                        new_line, fn_start-1, fn_end)
+                                           new_line, fn_start-1, fn_end)
             end
         end
         -- highlight file type symbol
