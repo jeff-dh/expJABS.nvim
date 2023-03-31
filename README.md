@@ -99,6 +99,7 @@ require 'jabs'.setup {
     split_filename = true, -- Split filename into separate components for name and path. Default false
     split_filename_path_width = 20, -- If split_filename is true, how wide the column for the path is supposed to be, Default 0 (don't show path)
     use_devicons = false, -- Whether to use nvim-web-devicons next to filenames. Default true
+    disable_title = true, -- disables the title in the main popup window. Default false
 
     -- Options for preview window
     preview_position = 'left', -- top, bottom, left, right. Default top

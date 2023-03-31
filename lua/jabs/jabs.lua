@@ -88,7 +88,7 @@ end
 
 local function updateBufferFromLsLines(buf)
 
-    for _, ls_line in ipairs(getLSResult()) do
+    for i, ls_line in ipairs(getLSResult()) do
         local buffer_handle, flags, filename, linenr = unpack(ls_line)
 
         -- get file and buffer symbol
@@ -115,7 +115,8 @@ local function updateBufferFromLsLines(buf)
 
         -- add line to buffer
         local new_line = api.nvim_buf_line_count(0)
-        api.nvim_buf_set_lines(buf, -1, -1, true, { line })
+        local line_number = config.disable_title and i - 1 or i
+        api.nvim_buf_set_lines(buf, line_number, -1, true, { line })
         --apply some highlighting
         api.nvim_buf_add_highlight(buf, -1, buf_symbol_hl, new_line, 0, -1)
 
@@ -148,6 +149,10 @@ end
 
 local function refresh()
     local function setTitle(buf)
+        if config.disable_title then
+            return
+        end
+
         local w = api.nvim_win_get_width(0)
         local h = utils.fitIntoWidth('press ? for help', w-1, false)
         api.nvim_buf_set_lines(buf, 0, -1, false, {h})
@@ -365,9 +370,11 @@ local function open()
     vim.b[buf].isJABSBuffer = true
 
     -- Prevent cursor from going to buffer title
-    vim.cmd(string.format(
-        "au CursorMoved <buffer=%s> if line(\".\") == 1 | call feedkeys('j', 'n') | endif",
-        buf))
+    if not config.disable_title then
+        vim.cmd(string.format(
+            "au CursorMoved <buffer=%s> if line(\".\") == 1 | call feedkeys('j', 'n') | endif",
+            buf))
+    end
 
     api.nvim_open_win(buf, true, getPopupConfig())
     -- hmm for some reason this line is neccessary to assign

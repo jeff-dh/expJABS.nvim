@@ -60,6 +60,8 @@ local function setup(c)
     -- icon / symbol stuff
     config.use_devicons = not (c.use_devicons == false)
 
+    config.disable_title = c.disable_title or false
+
     config.highlight = {
         current = c.highlight.current or "Number",
         split = c.highlight.split or "Statement",
