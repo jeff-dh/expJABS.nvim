@@ -190,6 +190,7 @@ local function openSelectedBuffer(opt)
         window = "b%s",
         vsplit = "vert sb %s",
         hsplit = "sb %s",
+        tab = "tab sb %s",
     }
 
     -- explicitly set the buflisted flag. This "restores" deleted buffers
@@ -261,6 +262,8 @@ local function setKeymaps(buf)
                function() openSelectedBuffer("hsplit") end)
     buf_keymap(config.keymap.v_split,
                function() openSelectedBuffer("vsplit") end)
+    buf_keymap(config.keymap.tab,
+               function() openSelectedBuffer("tab") end)
     buf_keymap(config.keymap.preview,
                function() preview.open(config.preview) end)
     buf_keymap(config.keymap.switch_to,

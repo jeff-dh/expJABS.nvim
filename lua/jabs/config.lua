@@ -49,6 +49,7 @@ local function setup(c)
         preview = c.keymap.preview or "P",
         toggle_unlisted = c.keymap.toggle_unlisted or "u",
         switch_to = c.keymap.switch_to or "<S-CR>",
+        tab = c.keymap.tab or "t",
     }
 
     -- sort_mru and split_filename
