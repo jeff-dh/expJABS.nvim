@@ -61,7 +61,7 @@ local function getLSResult()
         -- extract data from ls string
         local match_cmd = '(%d+)(.*)"(.*)"'
         if not config.sort_mru then
-            match_cmd = match_cmd .. '%s*line%s(%d+)'
+            match_cmd = match_cmd .. '%s*%a+%s(%d+)'
         else
             -- dummy that should never match so we get '' as result for linenr
             match_cmd = match_cmd .. '(\n?)'
