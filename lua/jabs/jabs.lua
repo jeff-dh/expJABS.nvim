@@ -16,7 +16,11 @@ local function closePopup()
 end
 
 local function cleanUp()
+    -- create -- without clearing -- JABSAutoCmds to ensure it exists when we
+    -- clear it. Otherwise -> Exception
+    api.nvim_create_augroup("JABSAutoCmds", {clear=false})
     api.nvim_clear_autocmds({group = "JABSAutoCmds"})
+
     local callerWinId
     for _, win in ipairs(api.nvim_list_wins()) do
         if vim.w[win].isJABSWindow == true then
@@ -363,6 +367,8 @@ local function open()
         closePopup()
         return
     end
+
+    cleanUp()
 
     local JABSCallerWinId = api.nvim_get_current_win()
 
