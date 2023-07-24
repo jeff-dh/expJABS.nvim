@@ -143,6 +143,13 @@ require 'jabs'.setup {
         toggle_unlisted = 'U', -- Show closed (unlisted) buffers. Default u
         switch_to = '<CR>', -- switch to buffer if opened otherwise open it. Default <S-CR>
     },
+
+    openCommands = {
+        window = "b%s",
+        vsplit = "vert sb %s",
+        hsplit = "sb %s",
+        tab = "tab sb %s",
+    }
 }
 ```
 

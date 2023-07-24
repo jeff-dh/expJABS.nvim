@@ -198,16 +198,9 @@ local function openSelectedBuffer(opt)
 
     closePopup()
 
-    local openOptions = {
-        window = "b%s",
-        vsplit = "vert sb %s",
-        hsplit = "sb %s",
-        tab = "tab sb %s",
-    }
-
     -- explicitly set the buflisted flag. This "restores" deleted buffers
     vim.bo[buf].buflisted = true
-    vim.cmd(string.format(openOptions[opt], buf))
+    vim.cmd(string.format(config.openCommands[opt], buf))
 end
 
 local function deleteSelectedBuffer()

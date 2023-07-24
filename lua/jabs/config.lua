@@ -10,6 +10,7 @@ local function setup(c)
     c.preview = c.preview or {}
     c.highlight = c.highlight or {}
     c.offset = c.offset or {}
+    c.openCommands = c.openCommands or {}
 
     -- position backwards compatibility
     if c.position == 'center' then
@@ -80,6 +81,13 @@ local function setup(c)
         ro = c.symbols.ro or "",
         edited = c.symbols.edited or "",
         terminal = c.symbols.terminal or "",
+    }
+
+    config.openCommands = {
+        window = c.openCommands.window or "b%s",
+        vsplit = c.openCommands.vsplit or "vert sb %s",
+        hsplit = c.openCommands.hsplit or "sb %s",
+        tab = c.openCommands.tab or "tab sb %s",
     }
 end
 
